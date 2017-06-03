@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.hibernate.manytomany.Role" table="t_role">
+		<id name="role_id" column="role_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="role_name" column="role_name"></property>
+		<property name="role_memo" column="role_memo"></property>
+		<!-- cascade="save-update,delete" --><!-- 级联保存 -->
+		<set name="setRole" table="user_role"><!-- 放弃对主键的维护 -->
+			<key column="roleid"></key>
+			<many-to-many class="cn.hibernate.manytomany.User"
+				column="userid"></many-to-many>
+		</set>
+	</class>
+
+</hibernate-mapping>

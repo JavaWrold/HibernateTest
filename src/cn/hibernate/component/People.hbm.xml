@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.hibernate.component.People" table="t_people">
+		<id name="pid" column="pid">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" column="name"></property>
+
+		<component name="address" class="cn.hibernate.component.Address">
+			<property name="aid" column="aid"></property>
+			<property name="city" column="city"></property>
+			<property name="country" column="country"></property>
+		</component>
+	</class>
+
+	<!-- 使用配置文件查询 -->
+	<query name="findPeopleByName">
+		<![CDATA[from People p where p.name = :name]]>
+	</query>
+	<sql-query name="findPeopleByName1">
+		<![CDATA[select * from t_people]]>
+	</sql-query>
+
+</hibernate-mapping>

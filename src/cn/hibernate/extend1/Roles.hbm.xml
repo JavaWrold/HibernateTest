@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.hibernate.extend1.Roles" table="t_roles"
+		discriminator-value="rol">
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		<!-- 辨别字段 -->
+		<discriminator type="string"></discriminator>
+		<property name="role" column="role"></property>
+
+		<!-- 配置子类 -->
+		<subclass name="cn.hibernate.extend1.Student"
+			discriminator-value="rol_stu">
+			<property name="stu_name" column="stu_name"></property>
+			<property name="stu_age" column="stu_age"></property>
+		</subclass>
+
+		<subclass name="cn.hibernate.extend1.Teacher"
+			discriminator-value="rol_tea">
+			<property name="tea_name" column="tea_name"></property>
+			<property name="tea_age" column="tea_age"></property>
+		</subclass>
+	</class>
+
+
+
+</hibernate-mapping>

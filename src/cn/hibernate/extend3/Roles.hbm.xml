@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.hibernate.extend3.Roles" table="t_roles2">
+		<id name="id" column="id">
+			<!-- 不能使用native -->
+			<generator class="increment"></generator>
+		</id>
+		<property name="role" column="role"></property>
+
+		<!-- 配置子类 -->
+		<joined-subclass name="cn.hibernate.extend3.Student"
+			table="t_student3">
+			<key column="id"></key>
+			<property name="stu_name" column="stu_name"></property>
+			<property name="stu_age" column="stu_age"></property>
+		</joined-subclass>
+
+		<joined-subclass name="cn.hibernate.extend3.Teacher"
+			table="t_teacher3">
+			<key column="id"></key>
+			<property name="tea_name" column="tea_name"></property>
+			<property name="tea_age" column="tea_age"></property>
+		</joined-subclass>
+	</class>
+
+
+
+</hibernate-mapping>

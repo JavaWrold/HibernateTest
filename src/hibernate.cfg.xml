@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- Hibernate 4.0及以后的配置二级缓存 -->
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+
+		<!-- Hibernate 3.3 配置二级缓存 -->
+		<!-- <property name="cache.provider_class">org.hibernate.cache.EhCacheProvider</property> 
+			<property name="hibernate.cache.use_second_level_cache">true</property> -->
+
+		<!-- 配置数据库信息 -->
+		<property name="connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+		<property name="connection.url">jdbc:mysql:///test</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">asd123</property>
+		<property name="Connection.useUnicode">true</property>
+
+		<!-- 配置hibernate -->
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="hbm2ddl.auto">update</property>
+
+		<!-- 配置方言 -->
+		<property name="dialect">
+			org.hibernate.dialect.MySQL5Dialect
+		</property>
+
+		<!-- 配置本地线程 -->
+		<property name="current_session_context_class">thread</property>
+
+		<!-- 加载配置文件到核心文件 -->
+		<mapping resource="cn/hibernate/entity/User.hbm.xml" />
+		<mapping resource="cn/hibernate/onetomany/Custorm.hbm.xml" />
+		<mapping resource="cn/hibernate/onetomany/LinkMan.hbm.xml" />
+		<mapping resource="cn/hibernate/manytomany/Role.hbm.xml" />
+		<mapping resource="cn/hibernate/manytomany/User.hbm.xml" />
+
+		<!-- 配置使用注解方式的配置文件 -->
+		<mapping class="cn.hibernate.annonation.User" />
+
+		<!-- Hibernate使用xml文件的每个类层次一张表 -->
+		<mapping resource="cn/hibernate/extend1/Roles.hbm.xml" />
+
+		<!--Hibernate每个具体类一张表映射(使用XML) -->
+		<mapping resource="cn/hibernate/extend2/Roles.hbm.xml" />
+
+		<!-- Hibernate每个具体类一张表映射(使用XML) -->
+		<mapping resource="cn/hibernate/extend3/Roles.hbm.xml" />
+
+		<!-- Hibernate每个层次类一张表（使用注释） -->
+		<mapping class="cn.hibernate.extend.annonation1.Roles" />
+		<mapping class="cn.hibernate.extend.annonation1.Student" />
+		<mapping class="cn.hibernate.extend.annonation1.Teacher" />
+
+		<!-- Hibernate每个具体类一张表映射(使用注释） -->
+		<mapping class="cn.hibernate.extend.annonation.Roles" />
+		<mapping class="cn.hibernate.extend.annonation.Student" />
+		<mapping class="cn.hibernate.extend.annonation.Teacher" />
+
+		<!-- Hibernate每个子类一张表（使用注释）实例 -->
+		<mapping class="cn.hibernate.extend.annonation2.Roles" />
+		<mapping class="cn.hibernate.extend.annonation2.Student" />
+		<mapping class="cn.hibernate.extend.annonation2.Teacher" />
+
+		<!-- Hibernate组件映射 -->
+		<mapping resource="cn/hibernate/component/People.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>
+
